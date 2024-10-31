@@ -1,0 +1,289 @@
+$primary-color: #ffefe7;
+$secondary-color: #ffdac6;
+$tertiary-color: #babd8d;
+$quaternary-color: #fa9500;
+$primary-text-color: #7c6a0a;
+$font-stack: "IBM Plex Sans", sans-serif;
+
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin buttonStyle {
+  button {
+    background: none;
+    border: none;
+    outline: none;
+    border-style: none;
+    cursor: pointer;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-stack;
+}
+
+body {
+  background-color: $primary-color;
+}
+
+nav {
+  height: 100px;
+  @include flex-center(row, space-between, center);
+  padding: 0 30px;
+  p {
+    font-size: 1.5em;
+    color: $primary-text-color;
+  }
+  .icons {
+    display: flex;
+    gap: 20px;
+    @include buttonStyle;
+  }
+}
+
+article {
+  color: $primary-text-color;
+  @include flex-center(row, space-around, center);
+  .impact-section {
+    width: 50%;
+    h1 {
+      font-size: 3em;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    @include buttonStyle;
+    button {
+      background-color: $quaternary-color;
+      border-radius: 99px;
+      padding: 10px 36px;
+      color: white;
+      font-weight: 600;
+      font-size: 1em;
+      margin-top: 25px;
+      &:hover {
+        transform: scale(1.1);
+        transition: 0.5s;
+      }
+    }
+  }
+  .image-section {
+    img {
+      width: 25vw;
+      border-radius: 10px;
+    }
+  }
+}
+
+section {
+  width: auto;
+  height: auto;
+  padding: 60px;
+  h2 {
+    font-weight: 500;
+    color: $primary-text-color;
+    font-size: 2em;
+    margin-bottom: 60px;
+  }
+  .healthcare,
+  .furniture {
+    margin: 30px 0;
+    h2 {
+      font-weight: 300;
+    }
+  }
+  .healthcare {
+    .card-section {
+      @include flex-center(row, center, center);
+      width: auto;
+      height: auto;
+      column-gap: 100px;
+      row-gap: 80px;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      .product-card {
+        width: 15vw;
+        height: 50vh;
+        background-color: $secondary-color;
+        color: $primary-text-color;
+        border-radius: 8px;
+        position: relative;
+        padding:  30px;
+        .icon {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+        .product-image {
+          width: 100%;
+          height: auto;
+          @include flex-center(row, center, center);
+          img {
+            width: 12vw;
+            height: 30vh;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+        }
+        .product-info {
+          margin: 10px 0;
+          h3 {
+            font-size: 1em;
+          }
+          p {
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+  }
+
+  .furniture {
+    @extend .healthcare;
+    .card-section {
+      .product-card {
+        background-color: $tertiary-color;
+        color: $primary-text-color;
+      }
+    }
+  }
+
+  .about-us {
+    @include flex-center(row, space-around, center);
+    margin-bottom: 100px;
+    div {
+      @include flex-center(row, center, center);
+      width: 30%;
+      margin: 80px 0;
+      img {
+        width: 6vw;
+      }
+      p {
+        color: red;
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+  }
+
+  .gallery {
+    margin-bottom: 100px;
+    .image-container {
+      @include flex-center(row, space-between, center);
+      img {
+        width: 25vw;
+        height: 50vh;
+        object-fit: cover;
+        border-radius: 14px;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+
+  .location {
+    img {
+      width: 100%;
+    }
+    h3 {
+      margin-top: 30px;
+      margin-bottom: 8px;
+      font-size: 1.3em;
+    }
+    h3, p {
+      color: red;
+      font-weight: 400;
+    }
+  }
+}
+
+footer {
+  background-color: $quaternary-color;
+  width: 100%;
+  height: 270px;
+  padding: 40px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  h2 {
+    margin-bottom: 4  0px;
+  }
+  .social-media {
+    @include flex-center(row, center, center);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  article {
+    flex-direction: column-reverse;
+    .impact-section {
+      width: 80%;
+      h1 {
+        font-size: 2.5em;
+      }
+    }
+    .image-section {
+      img {
+        width: 70vw;
+        height: 70vh;
+        object-fit: cover;
+      }
+    }
+  }
+
+  section {
+    .healthcare {
+      .card-section {
+        flex-wrap: nowrap;
+        overflow-y: hidden;
+        .product-card {
+          width: 40vw;
+          height: 50vh;
+          .product-image {
+            img {
+              width: 30vw;
+              height: 30vh;
+            }
+          }
+        }
+      }
+    }
+
+    .furniture {
+      @extend .healthcare;
+    }
+
+    .about-us {
+      flex-direction: column;
+      div {
+        flex-direction: column;
+        width: 80%;
+        img {
+          width: 30vw;
+        }
+      }
+    }
+
+    .gallery {
+      .image-container {
+        @include flex-center(column, center, center);
+        gap: 20px;
+        img {
+          width: 50vw;
+          height: 50vh;
+        }
+      }
+    }
+  }
+}
